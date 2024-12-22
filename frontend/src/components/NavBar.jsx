@@ -13,7 +13,7 @@ const NavBar = () => {
     try {
       // don't need response here
       await axios.post(
-        import.meta.env.BASE_URL + "/logout",
+        "https://dev-tinder-backend-7rro.onrender.com" + "/logout",
         {},
         {
           withCredentials: true,

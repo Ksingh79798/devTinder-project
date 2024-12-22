@@ -15,7 +15,11 @@ const UserCard = ({ user }) => {
   const handleSendRequest = async (status, toUserId) => {
     try {
       const res = await axios.post(
-        import.meta.env.BASE_URL + "/request/send/" + status + "/" + toUserId,
+        "https://dev-tinder-backend-7rro.onrender.com" +
+          "/request/send/" +
+          status +
+          "/" +
+          toUserId,
         {},
         {
           withCredentials: true,

@@ -8,8 +8,8 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [emailId, setEmailID] = useState("");
-  const [password, setPassword] = useState("");
+  const [emailId, setEmailID] = useState("vicky@gmail.com");
+  const [password, setPassword] = useState("Vicky@123");
   const [isLoginForm, setIsLoginForm] = useState(true);
   const [error, setError] = useState("");
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       const res = await axios.post(
-        import.meta.env.BASE_URL + "/login",
+        "https://dev-tinder-backend-7rro.onrender.com" + "/login",
         {
           emailId,
           password,
@@ -37,7 +37,7 @@ const Login = () => {
   const handleSignUp = async () => {
     try {
       const res = await axios.post(
-        import.meta.env.BASE_URL + "/signup",
+        "https://dev-tinder-backend-7rro.onrender.com" + "/signup",
         { firstName, lastName, emailId, password },
         { withCredentials: true }
       );

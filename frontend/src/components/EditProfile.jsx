@@ -25,7 +25,7 @@ const EditProfile = ({ user }) => {
   const saveProfile = async () => {
     try {
       const res = await axios.patch(
-        import.meta.env.BASE_URL + "/profile/edit",
+        "https://dev-tinder-backend-7rro.onrender.com" + "/profile/edit",
         { firstName, lastName, age, gender, photoUrl, about },
         {
           withCredentials: true,

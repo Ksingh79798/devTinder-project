@@ -16,7 +16,7 @@ const Body = () => {
     if (userData) return;
     try {
       // make  Db api call
-      const res = await axios.get(import.meta.env.BASE_URL + "/profile/view", {
+      const res = await axios.get("https://dev-tinder-backend-7rro.onrender.com"+ "/profile/view", {
         withCredentials: true,
       });
       // update the store

@@ -17,7 +17,11 @@ const Requests = () => {
     try {
       // {{import.meta.env.BASE_URL}}/request/review/accepted/rejected/:id
       const res = await axios.post(
-        import.meta.env.BASE_URL + "/request/review/" + status + "/" + _id,
+        "https://dev-tinder-backend-7rro.onrender.com" +
+          "/request/review/" +
+          status +
+          "/" +
+          _id,
         {},
         { withCredentials: true }
       );

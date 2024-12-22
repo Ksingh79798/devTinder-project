@@ -17,9 +17,12 @@ const Feed = () => {
 
     // if feed is null then make api call
     try {
-      const res = await axios.get(import.meta.env.BASE_URL + "/feed", {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        "https://dev-tinder-backend-7rro.onrender.com" + "/feed",
+        {
+          withCredentials: true,
+        }
+      );
       console.log("feed:", res);
       dispatch(addFeed(res?.data?.data));
     } catch (err) {

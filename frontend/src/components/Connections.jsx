@@ -15,7 +15,7 @@ const Connections = () => {
   const fetchConnections = async () => {
     try {
       const res = await axios.get(
-        import.meta.env.BASE_URL + "/user/connections",
+        "https://dev-tinder-backend-7rro.onrender.com" + "/user/connections",
         {
           withCredentials: true,
         }
