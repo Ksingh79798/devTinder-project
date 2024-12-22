@@ -31,6 +31,10 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
+app.get("/", async () => {
+  res.send("This is backend server");
+});
+
 app.use("/", authRouter);
 app.use("/", profileRouter);
 app.use("/", requestRouter);
