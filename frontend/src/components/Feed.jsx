@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useDispatch, useSelector } from "react-redux";
-import { BASE_URL } from "../utils/constants";
+// import { BASE_URL } from "../utils/constants";
 import axios from "axios";
 import { addFeed } from "../utils/feedSlice.jsx";
 import { useEffect } from "react";
@@ -17,7 +17,7 @@ const Feed = () => {
 
     // if feed is null then make api call
     try {
-      const res = await axios.get(BASE_URL + "/feed", {
+      const res = await axios.get(import.meta.env.BASE_URL + "/feed", {
         withCredentials: true,
       });
       console.log("feed:", res);

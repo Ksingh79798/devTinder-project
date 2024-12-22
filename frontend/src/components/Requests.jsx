@@ -3,7 +3,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
-import { BASE_URL } from "../utils/constants";
+// import { BASE_URL } from "../utils/constants";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addRequests, removeRequest } from "../utils/requestSlice";
@@ -15,9 +15,9 @@ const Requests = () => {
   const dispatch = useDispatch();
   const reviewRequest = async (status, _id) => {
     try {
-      // {{Base_Url}}/request/review/accepted/rejected/:id
+      // {{import.meta.env.BASE_URL}}/request/review/accepted/rejected/:id
       const res = await axios.post(
-        BASE_URL + "/request/review/" + status + "/" + _id,
+        import.meta.env.BASE_URL + "/request/review/" + status + "/" + _id,
         {},
         { withCredentials: true }
       );

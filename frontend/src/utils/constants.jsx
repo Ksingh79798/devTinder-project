@@ -1,2 +1,1 @@
-// export const BASE_URL = "http://localhost:4000";
-export const BASE_URL = "https://dev-tinder-backend-7rro.onrender.com";
+// export const import.meta.env.BASE_URL = "http://localhost:4000";

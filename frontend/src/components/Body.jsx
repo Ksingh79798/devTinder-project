@@ -2,7 +2,6 @@ import { Outlet, useNavigate } from "react-router-dom";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
 import { useDispatch, useSelector } from "react-redux";
-import { BASE_URL } from "../utils/constants";
 import axios from "axios";
 import { addUser } from "../utils/userSlice";
 import { useEffect } from "react";
@@ -17,7 +16,7 @@ const Body = () => {
     if (userData) return;
     try {
       // make  Db api call
-      const res = await axios.get(BASE_URL + "/profile/view", {
+      const res = await axios.get(import.meta.env.BASE_URL + "/profile/view", {
         withCredentials: true,
       });
       // update the store

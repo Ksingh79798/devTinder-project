@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 import { useDispatch } from "react-redux";
-import { BASE_URL } from "../utils/constants";
+// import { BASE_URL } from "../utils/constants";
 import axios from "axios";
 import { removeFeed } from "../utils/feedSlice";
 
@@ -15,7 +15,7 @@ const UserCard = ({ user }) => {
   const handleSendRequest = async (status, toUserId) => {
     try {
       const res = await axios.post(
-        BASE_URL + "/request/send/" + status + "/" + toUserId,
+        import.meta.env.BASE_URL + "/request/send/" + status + "/" + toUserId,
         {},
         {
           withCredentials: true,

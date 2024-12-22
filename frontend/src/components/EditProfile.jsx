@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import UserCard from "./UserCard";
-import { BASE_URL } from "../utils/constants";
+// import { BASE_URL } from "../utils/constants";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
@@ -25,7 +25,7 @@ const EditProfile = ({ user }) => {
   const saveProfile = async () => {
     try {
       const res = await axios.patch(
-        BASE_URL + "/profile/edit",
+        import.meta.env.BASE_URL + "/profile/edit",
         { firstName, lastName, age, gender, photoUrl, about },
         {
           withCredentials: true,
