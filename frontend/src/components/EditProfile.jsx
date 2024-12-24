@@ -4,13 +4,14 @@ import { useState } from "react";
 import UserCard from "./UserCard";
 // import { BASE_URL } from "../utils/constants";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../utils/userSlice";
 
 const EditProfile = ({ user }) => {
   // console.log(user);
   // console.log(user?.user?.firstName);
   const dispatch = useDispatch();
+  const token = useSelector((store) => store?.user?.token);
 
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);
@@ -25,10 +26,13 @@ const EditProfile = ({ user }) => {
   const saveProfile = async () => {
     try {
       const res = await axios.patch(
-        "https://dev-tinder-backend-7rro.onrender.com" + "/profile/edit",
+        import.meta.env.VITE_BASEURL + "/profile/edit",
         { firstName, lastName, age, gender, photoUrl, about },
         {
           withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
       console.log(res);

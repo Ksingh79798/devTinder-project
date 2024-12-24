@@ -11,13 +11,19 @@ import { addConnections } from "../utils/connectionSlice";
 
 const Connections = () => {
   const connections = useSelector((store) => store.connections);
+  const token = useSelector((store) => store?.user?.token);
+
   const dispatch = useDispatch();
+  console.log("hii");
   const fetchConnections = async () => {
     try {
       const res = await axios.get(
-        "https://dev-tinder-backend-7rro.onrender.com" + "/user/connections",
+        import.meta.env.VITE_BASEURL + "/user/connections",
         {
           withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
       console.log("allconnections:-", res);

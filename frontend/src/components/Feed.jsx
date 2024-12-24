@@ -8,27 +8,32 @@ import UserCard from "./UserCard.jsx";
 const Feed = () => {
   // read the feed
   const feedData = useSelector((store) => store.feed);
+  const token = useSelector((store) => store?.user?.token);
+  console.log(token);
+
   const dispatch = useDispatch();
-  // console.log("feed data:-", feedData);
+  console.log("feed data:-", feedData);
   // console.log(useSelector((store) => store.feed));
 
   const getFeed = async () => {
     if (feedData) return;
+    // const token=sessionStorage.getItem()
 
     // if feed is null then make api call
     try {
-      const res = await axios.get(
-        "https://dev-tinder-backend-7rro.onrender.com" + "/feed",
-        {
-          withCredentials: true,
-        }
-      );
+      const res = await axios.get(import.meta.env.VITE_BASEURL + "/feed", {
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       console.log("feed:", res);
       dispatch(addFeed(res?.data?.data));
     } catch (err) {
       console.error(err.message);
     }
   };
+  console.log("hii");
 
   // get the feed 1st time as soon as the page load
   useEffect(() => {

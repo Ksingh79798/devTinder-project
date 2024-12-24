@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 // import { BASE_URL } from "../utils/constants";
 import axios from "axios";
 import { removeFeed } from "../utils/feedSlice";
@@ -9,13 +9,14 @@ import { removeFeed } from "../utils/feedSlice";
 const UserCard = ({ user }) => {
   console.log(user);
   const dispatch = useDispatch();
+  const token = useSelector((store) => store?.user?.token);
 
   // eslint-disable-next-line react/prop-types
   const { _id, firstName, lastName, age, about, photoUrl, gender } = user;
   const handleSendRequest = async (status, toUserId) => {
     try {
       const res = await axios.post(
-        "https://dev-tinder-backend-7rro.onrender.com" +
+        import.meta.env.VITE_BASEURL +
           "/request/send/" +
           status +
           "/" +
@@ -23,6 +24,9 @@ const UserCard = ({ user }) => {
         {},
         {
           withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
       dispatch(removeFeed(toUserId));

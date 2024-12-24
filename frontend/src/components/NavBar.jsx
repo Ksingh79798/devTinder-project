@@ -5,15 +5,15 @@ import axios from "axios";
 import { removeUser } from "../utils/userSlice";
 
 const NavBar = () => {
-  const user = useSelector((store) => store.user);
-  console.log(user);
+  const user = useSelector((store) => store?.user?.user);
+  // console.log(user?.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLogout = async () => {
     try {
       // don't need response here
       await axios.post(
-        "https://dev-tinder-backend-7rro.onrender.com" + "/logout",
+        import.meta.env.VITE_BASEURL + "/logout",
         {},
         {
           withCredentials: true,

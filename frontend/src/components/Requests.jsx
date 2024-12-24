@@ -11,19 +11,21 @@ import { addRequests, removeRequest } from "../utils/requestSlice";
 // This is Request page that i have got all the CR
 const Requests = () => {
   const requests = useSelector((store) => store.requests);
+  const token = useSelector((store) => store?.user?.token);
 
   const dispatch = useDispatch();
   const reviewRequest = async (status, _id) => {
     try {
       // {{import.meta.env.BASE_URL}}/request/review/accepted/rejected/:id
       const res = await axios.post(
-        "https://dev-tinder-backend-7rro.onrender.com" +
-          "/request/review/" +
-          status +
-          "/" +
-          _id,
+        import.meta.env.VITE_BASEURL + "/request/review/" + status + "/" + _id,
         {},
-        { withCredentials: true }
+        {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       dispatch(removeRequest(_id));
     } catch (err) {
@@ -33,9 +35,15 @@ const Requests = () => {
 
   const fetchRequests = async () => {
     try {
-      const res = await axios.get(BASE_URL + "/user/requests/received", {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        import.meta.env.VITE_BASEURL + "/user/requests/received",
+        {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       dispatch(addRequests(res.data.data));
       console.log(res);

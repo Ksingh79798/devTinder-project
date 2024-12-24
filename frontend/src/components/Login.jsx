@@ -4,6 +4,8 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+
 // import { BASE_URL } from "../utils/constants";
 const Login = () => {
   const [firstName, setFirstName] = useState("");
@@ -18,15 +20,19 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       const res = await axios.post(
-        "https://dev-tinder-backend-7rro.onrender.com" + "/login",
+        import.meta.env.VITE_BASEURL + "/login",
         {
           emailId,
           password,
         },
-        { withCredentials: true }
+        {
+          withCredentials: true,
+        }
       );
       // console.log("Login:->", res.data);
+
       dispatch(addUser(res.data));
+      console.log(res.data);
       return navigate("/");
     } catch (err) {
       setError(err?.response?.data || "something went wrong!");
@@ -34,10 +40,41 @@ const Login = () => {
     }
   };
 
+  // const handleLogin = async () => {
+  //   try {
+  //     const res = await axios.post(
+  //       import.meta.env.VITE_BASEURL + "/login",
+  //       {
+  //         emailId,
+  //         password,
+  //       },
+  //       {
+  //         withCredentials: true,
+  //       }
+  //     );
+
+  //     // dispatch(addUser(res.data));
+  //     console.log(res);
+  //     const token = Cookies.get("token");
+  //     console.log("Token----", token);
+
+  //     if (!token) {
+  //       throw new Error("No token received");
+  //     }
+  //     console.log(token);
+  //     dispatch(addUser({ ...res.data, token }));
+
+  //     return navigate("/");
+  //   } catch (err) {
+  //     setError(err?.response?.data || "something went wrong!");
+  //     console.error(err);
+  //   }
+  // };
+
   const handleSignUp = async () => {
     try {
       const res = await axios.post(
-        "https://dev-tinder-backend-7rro.onrender.com" + "/signup",
+        import.meta.env.VITE_BASEURL + "/signup",
         { firstName, lastName, emailId, password },
         { withCredentials: true }
       );
@@ -49,6 +86,7 @@ const Login = () => {
       setError(err?.response?.data || "something went wrong!");
     }
   };
+
   return (
     <>
       <div className="flex justify-center my-10 ">

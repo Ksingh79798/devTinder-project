@@ -10,15 +10,23 @@ const Body = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userData = useSelector((store) => store.user);
+  const token = useSelector((store) => store?.user?.token);
+
   // console.log(userData);
   // console.log(useSelector((store) => store.user));
   const fetchUser = async () => {
     if (userData) return;
     try {
       // make  Db api call
-      const res = await axios.get("https://dev-tinder-backend-7rro.onrender.com"+ "/profile/view", {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        import.meta.env.VITE_BASEURL + "/profile/view",
+        {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       // update the store
       dispatch(addUser(res?.data));
     } catch (err) {
